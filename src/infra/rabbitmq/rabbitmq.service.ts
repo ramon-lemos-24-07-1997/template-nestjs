@@ -1,21 +1,19 @@
-// src/rabbitmq/rabbitmq.service.ts
 import { Injectable, OnModuleInit, Logger } from '@nestjs/common';
 import { RabbitMQConnection } from './rabbitmq.connection';
 import { ChannelModel } from 'amqplib';
 
 @Injectable()
-export class RabbitMQService implements OnModuleInit {
+export class RabbitMQService {
   private connection: ChannelModel;
   private readonly logger = new Logger(RabbitMQService.name);
 
   constructor(private readonly rabbitMQConnection: RabbitMQConnection) {}
 
-  async onModuleInit() {
-    this.connection = await this.rabbitMQConnection.getConnection();
-  }
-
   async publishToQueue(queue: string, message: any) {
     try {
+      if (!this.connection) {
+        this.connection = await this.rabbitMQConnection.getConnection();
+      }
       const channel = await this.connection.createChannel();
       await channel.assertQueue(queue, { durable: true });
       const success = channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), {
