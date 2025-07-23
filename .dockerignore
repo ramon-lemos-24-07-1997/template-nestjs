@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+.env
+.git
+dist
+coverage
+*.tsbuildinfo
+database/*.sqlite
+logs
+.gitignore
+README.md
+.nyc_output
+.vscode
+.idea

@@ -16,7 +16,6 @@ export class RabbitMQConnection implements OnModuleInit {
     if (!this.connection) {
       await this.connect();
     }
-    console.log('connection tem');
     return this.connection!;
   }
 

@@ -12,6 +12,9 @@ export class EnvironmentValidator {
       'RABBITMQ_URL',
       'PORT',
       'NODE_ENV',
+      'DATABASE_URL',
+      'JWT_SECRET',
+      'REDIS_URL'
     ];
 
     const missingVars: string[] = [];

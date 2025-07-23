@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { EnvironmentValidator } from './infra/config/env';
 import * as gracefulShutdown from "http-graceful-shutdown";
-import now from './utils/timeZone/sp';
+import { now } from './common/helpers/date';
 import helmet from 'helmet';
 import { RateLimitGuard } from './common/middleware/rate-limit.guard';
 
